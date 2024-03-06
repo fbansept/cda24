@@ -38,12 +38,49 @@ public class ProduitController {
 
 
     @PostMapping("/produit")
-    public Produit add(@RequestBody Produit nouveauProduit) {
+    public ResponseEntity<Produit> add(@RequestBody Produit nouveauProduit) {
+
+        //C'est une mise à jour
+        if(nouveauProduit.getId() != null) {
+
+            Optional<Produit> produitOptional = produitDao.findById(nouveauProduit.getId());
+
+            //l'utilisateur tente de modifier un produit qui n'existe pas/plus
+            if(produitOptional.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            produitDao.save(nouveauProduit);
+
+            return new ResponseEntity<>(produitOptional.get(), HttpStatus.OK);
+        }
 
         produitDao.save(nouveauProduit);
 
-        return nouveauProduit;
+        return new ResponseEntity<>(nouveauProduit, HttpStatus.CREATED);
     }
+
+//    @PostMapping("/produit")
+//    public ResponseEntity<Produit> add (@RequestBody Produit nouveauProduit) {
+//        nouveauProduit.setId(null);
+//        produitDao.save(nouveauProduit);
+//        return new ResponseEntity<>(nouveauProduit, HttpStatus.CREATED);
+//    }
+//
+//    @PutMapping("/produit/{id}")
+//    public ResponseEntity<Produit> update (@RequestBody Produit produitAmodifier, @PathVariable int id) {
+//        produitAmodifier.setId(id);
+//
+//        Optional<Produit> produitOptional = produitDao.findById(produitAmodifier.getId());
+//
+//        //l'utilisateur tente de modifier un produit qui n'existe pas/plus
+//        if(produitOptional.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//
+//        produitDao.save(produitAmodifier);
+//        return new ResponseEntity<>(produitOptional.get(), HttpStatus.OK);
+//    }
 
     @DeleteMapping("/produit/{id}")
     public ResponseEntity<Produit> delete (@PathVariable int id) {
