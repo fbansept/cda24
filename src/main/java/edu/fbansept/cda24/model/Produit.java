@@ -7,12 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Produit {
+public class Produit  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
-
 
     protected String nom;
 
