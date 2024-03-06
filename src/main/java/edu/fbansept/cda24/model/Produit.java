@@ -1,6 +1,7 @@
 package edu.fbansept.cda24.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +14,11 @@ public class Produit  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
+    @Size(max = 100) //ConstraintViolationException
+    @Column(length = 100) //MysqlDataTruncation
     protected String nom;
 
+    @Column(unique = true)
     protected String code;
 
     @Column(columnDefinition = "TEXT")
