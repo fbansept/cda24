@@ -3,6 +3,7 @@ package edu.fbansept.cda24.controller;
 
 import edu.fbansept.cda24.dao.ProduitDao;
 import edu.fbansept.cda24.model.Produit;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class ProduitController {
 
     @Autowired
@@ -38,7 +40,7 @@ public class ProduitController {
 
 
     @PostMapping("/produit")
-    public ResponseEntity<Produit> add(@RequestBody Produit nouveauProduit) {
+    public ResponseEntity<Produit> add(@Valid @RequestBody Produit nouveauProduit) {
 
         //C'est une mise à jour
         if(nouveauProduit.getId() != null) {

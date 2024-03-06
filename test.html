@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tester une requete en JS</title>
+  </head>
+  <body>
+    <ul id="liste-article"></ul>
+
+    <form id="formulaire">
+      <div><input id="nom" /></div>
+      <div><input id="code" /></div>
+      <div><input id="prix" /></div>
+      <button type="submit">Ajouter le produit</button>
+    </form>
+
+    <script>
+      refresh();
+
+      function refresh() {
+        fetch("http://localhost:8080/produit/liste")
+          .then((reponse) => reponse.json())
+          .then((listeProduit) => {
+            const ulListeArticle = document.getElementById("liste-article");
+
+            ulListeArticle.innerHTML = "";
+
+            listeProduit.forEach((produit) => {
+              const liProduit = document.createElement("li");
+              liProduit.innerHTML = produit.nom;
+              ulListeArticle.appendChild(liProduit);
+            });
+          });
+      }
+
+      const formulaire = document.getElementById("formulaire");
+      formulaire.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+
+        const nouveauProduit = {
+          nom: document.getElementById("nom").value,
+          code: document.getElementById("code").value,
+          prix: document.getElementById("prix").value,
+        };
+
+        const jsonProduit = JSON.stringify(nouveauProduit);
+
+        fetch("http://localhost:8080/produit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: jsonProduit,
+        })
+          .then((resultat) => resultat.json())
+          .then((produit) => refresh());
+      });
+    </script>
+  </body>
+</html>
