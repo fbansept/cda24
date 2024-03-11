@@ -1,8 +1,10 @@
 package edu.fbansept.cda24.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.EtatProduitDao;
 import edu.fbansept.cda24.model.EtatProduit;
+import edu.fbansept.cda24.view.EtatProduitView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,7 @@ public class EtatProduitController {
     }
 
     @GetMapping("/etat-produit/{id}")
+    @JsonView(EtatProduitView.class)
     public ResponseEntity<EtatProduit> get(@PathVariable int id) {
 
         Optional<EtatProduit> etatProduitOptional = etatProduitDao.findById(id);

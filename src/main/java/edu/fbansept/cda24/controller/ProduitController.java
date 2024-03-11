@@ -1,8 +1,10 @@
 package edu.fbansept.cda24.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.ProduitDao;
 import edu.fbansept.cda24.model.Produit;
+import edu.fbansept.cda24.view.ProduitView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,7 @@ public class ProduitController {
     ProduitDao produitDao;
 
     @GetMapping("/produit/liste")
+    @JsonView(ProduitView.class)
     public List<Produit> liste() {
 
         return produitDao.findAll();
@@ -27,6 +30,7 @@ public class ProduitController {
     }
 
     @GetMapping("/produit/{id}")
+    @JsonView(ProduitView.class)
     public ResponseEntity<Produit> get(@PathVariable int id) {
 
         Optional<Produit> produitOptional = produitDao.findById(id);
@@ -40,6 +44,7 @@ public class ProduitController {
 
 
     @PostMapping("/produit")
+    @JsonView(ProduitView.class)
     public ResponseEntity<Produit> add(@Valid @RequestBody Produit nouveauProduit) {
 
         //C'est une mise à jour
@@ -85,6 +90,7 @@ public class ProduitController {
 //    }
 
     @DeleteMapping("/produit/{id}")
+    @JsonView(ProduitView.class)
     public ResponseEntity<Produit> delete (@PathVariable int id) {
 
         Optional<Produit> produitOptional = produitDao.findById(id);
