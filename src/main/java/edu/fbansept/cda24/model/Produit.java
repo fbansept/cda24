@@ -2,6 +2,7 @@ package edu.fbansept.cda24.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import edu.fbansept.cda24.view.CommandeView;
 import edu.fbansept.cda24.view.EtatProduitView;
 import edu.fbansept.cda24.view.ProduitView;
 import jakarta.persistence.*;
@@ -25,7 +26,7 @@ public class Produit  {
     @NotBlank(message = "Le nom ne peut être vide")
     @Size(max = 100, message = "Nom à maximum 100 caractères") //ConstraintViolationException en cas d'erreur
     @Column(length = 100) //MysqlDataTruncation en cas d'erreur
-    @JsonView({ProduitView.class, EtatProduitView.class})
+    @JsonView({ProduitView.class, EtatProduitView.class, CommandeView.class})
     protected String nom;
 
     @NotBlank(message = "Le code ne peut être vide")

@@ -13,5 +13,11 @@ INSERT INTO etiquette_produit (produit_id, etiquette_id) VALUES
 INSERT INTO utilisateur (email, mot_de_passe, administrateur) VALUES
 ("bansept.franck@gmail.com","root",1), ("a@a.com","root",1), ("b@b.com","root",0);
 
-INSERT INTO commande (date, client_id) VALUES
-("2024-01-03",1), ("2024-01-04",1), (NOW(),3);
+INSERT INTO statut (designation) VALUES
+("Non validée"), ("Validée"), ("Annulée"), ("Expédiée");
+
+INSERT INTO commande (date, client_id, statut_id) VALUES
+("2024-01-03",1,4), ("2024-01-04",1,2), (NOW(),3,1);
+
+INSERT INTO ligne_commande (prix_de_vente, quantite, commande_id, produit_id) VALUES
+(11.99,1,1,1), (21.50,2,1,2), (8,1,2,1), (11.99,1,3,2);

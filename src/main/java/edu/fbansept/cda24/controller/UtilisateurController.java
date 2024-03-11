@@ -1,8 +1,10 @@
 package edu.fbansept.cda24.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.UtilisateurDao;
 import edu.fbansept.cda24.model.Utilisateur;
+import edu.fbansept.cda24.view.UtilisateurView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +22,13 @@ public class UtilisateurController {
     UtilisateurDao utilisateurDao;
 
     @GetMapping("/utilisateur/liste")
+    @JsonView(UtilisateurView.class)
     public List<Utilisateur> liste() {
-
         return utilisateurDao.findAll();
-
     }
 
     @GetMapping("/utilisateur/{id}")
+    @JsonView(UtilisateurView.class)
     public ResponseEntity<Utilisateur> get(@PathVariable int id) {
 
         Optional<Utilisateur> utilisateurOptional = utilisateurDao.findById(id);
@@ -40,6 +42,7 @@ public class UtilisateurController {
 
 
     @PostMapping("/utilisateur")
+    @JsonView(UtilisateurView.class)
     public ResponseEntity<Utilisateur> add(@Valid @RequestBody Utilisateur nouveauUtilisateur) {
 
         //C'est une mise à jour
@@ -85,6 +88,7 @@ public class UtilisateurController {
 //    }
 
     @DeleteMapping("/utilisateur/{id}")
+    @JsonView(UtilisateurView.class)
     public ResponseEntity<Utilisateur> delete (@PathVariable int id) {
 
         Optional<Utilisateur> utilisateurOptional = utilisateurDao.findById(id);

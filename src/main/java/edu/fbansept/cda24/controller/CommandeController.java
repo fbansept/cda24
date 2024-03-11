@@ -4,6 +4,7 @@ package edu.fbansept.cda24.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.CommandeDao;
 import edu.fbansept.cda24.model.Commande;
+import edu.fbansept.cda24.view.CommandeView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ public class CommandeController {
     CommandeDao commandeDao;
 
     @GetMapping("/commande/liste")
+    @JsonView(CommandeView.class)
     public List<Commande> liste() {
 
         return commandeDao.findAll();
@@ -28,6 +30,7 @@ public class CommandeController {
     }
 
     @GetMapping("/commande/{id}")
+    @JsonView(CommandeView.class)
     public ResponseEntity<Commande> get(@PathVariable int id) {
 
         Optional<Commande> commandeOptional = commandeDao.findById(id);
@@ -41,6 +44,7 @@ public class CommandeController {
 
 
     @PostMapping("/commande")
+    @JsonView(CommandeView.class)
     public ResponseEntity<Commande> add(@Valid @RequestBody Commande nouveauCommande) {
 
         //C'est une mise à jour
@@ -86,6 +90,7 @@ public class CommandeController {
 //    }
 
     @DeleteMapping("/commande/{id}")
+    @JsonView(CommandeView.class)
     public ResponseEntity<Commande> delete (@PathVariable int id) {
 
         Optional<Commande> commandeOptional = commandeDao.findById(id);
