@@ -11,7 +11,9 @@ INSERT INTO etiquette_produit (produit_id, etiquette_id) VALUES
 (1,1), (1,4), (2,1), (2,2);
 
 INSERT INTO utilisateur (email, mot_de_passe, administrateur) VALUES
-("bansept.franck@gmail.com","root",1), ("a@a.com","root",1), ("b@b.com","root",0);
+("bansept.franck@gmail.com","$2a$10$82wSHZqkS/yjcZEMl9xrSepPQKoZb9cQUA.QcfBaCgBewuy0Nt4fm",1),
+("a@a.com","$2a$10$82wSHZqkS/yjcZEMl9xrSepPQKoZb9cQUA.QcfBaCgBewuy0Nt4fm",1),
+("b@b.com","$2a$10$82wSHZqkS/yjcZEMl9xrSepPQKoZb9cQUA.QcfBaCgBewuy0Nt4fm",0);
 
 INSERT INTO statut (designation) VALUES
 ("Non validée"), ("Validée"), ("Annulée"), ("Expédiée");

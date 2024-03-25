@@ -26,6 +26,7 @@ public class Utilisateur {
     protected Integer id;
 
     @JsonView({UtilisateurView.class, CommandeView.class})
+    @Column(unique = true)
     protected String email;
 
     protected String motDePasse;
