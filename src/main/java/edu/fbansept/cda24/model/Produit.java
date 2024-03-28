@@ -32,7 +32,6 @@ public class Produit  {
     @NotBlank(message = "Le code ne peut être vide")
     @Size(max = 50, message = "Code à maximum 50 caractères")
     @Column(unique = true, length = 50)
-    @JsonView(ProduitView.class)
     protected String code;
 
     @Column(columnDefinition = "TEXT")

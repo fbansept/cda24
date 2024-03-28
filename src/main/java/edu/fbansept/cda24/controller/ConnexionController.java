@@ -1,8 +1,11 @@
 package edu.fbansept.cda24.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.UtilisateurDao;
 import edu.fbansept.cda24.model.Utilisateur;
+import edu.fbansept.cda24.security.AppUserDetails;
 import edu.fbansept.cda24.security.JwtUtils;
+import edu.fbansept.cda24.view.UtilisateurView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +63,16 @@ public class ConnexionController {
 
         return new ResponseEntity<>(Map.of("message","utilisateur créé"), HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("/profil")
+    @JsonView(UtilisateurView.class)
+    public ResponseEntity<Utilisateur> profil (@AuthenticationPrincipal AppUserDetails userDetails){
+
+        Utilisateur user = userDetails.getUtilisateur();
+        //user.setListeCommandes(null);
+
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
 

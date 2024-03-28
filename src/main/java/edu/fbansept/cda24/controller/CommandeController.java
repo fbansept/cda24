@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.CommandeDao;
 import edu.fbansept.cda24.model.Commande;
 import edu.fbansept.cda24.model.LigneCommande;
+import edu.fbansept.cda24.model.StatistiqueCommande;
 import edu.fbansept.cda24.view.CommandeView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,17 @@ public class CommandeController {
         return Map.of("ca", ca);
     }
 
-    @GetMapping("/commande-by-status/{status}")
+    @GetMapping("/commande-stat")
+    public void listeCommandeValide() {
+        List<StatistiqueCommande> resultat = commandeDao.statusCommandeV2();
+
+        for (StatistiqueCommande statistiqueCommande : resultat) {
+            System.out.println(
+                    statistiqueCommande.getNomStatut() + " = " + statistiqueCommande.getNombre());
+        }
+    }
+
+        @GetMapping("/commande-by-status/{status}")
     @JsonView(CommandeView.class)
     public List<Commande> listeCommandeValide(@PathVariable String status) throws UnsupportedEncodingException {
 

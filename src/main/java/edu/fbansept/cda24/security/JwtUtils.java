@@ -14,7 +14,15 @@ public class JwtUtils {
                 .signWith(SignatureAlgorithm.HS256, "azerty")
                 .setSubject(userDetails.getUsername())
                 .compact();
+    }
 
+    public String getSubjectFromJwt(String jwt) {
+
+        return Jwts.parser()
+                .setSigningKey("azerty")
+                .parseClaimsJws(jwt)
+                .getBody()
+                .getSubject();
     }
 
 }

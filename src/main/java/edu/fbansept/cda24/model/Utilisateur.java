@@ -1,10 +1,7 @@
 package edu.fbansept.cda24.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import edu.fbansept.cda24.view.CommandeView;
-import edu.fbansept.cda24.view.EtatProduitView;
-import edu.fbansept.cda24.view.ProduitView;
-import edu.fbansept.cda24.view.UtilisateurView;
+import edu.fbansept.cda24.view.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -34,7 +31,7 @@ public class Utilisateur {
     @JsonView(UtilisateurView.class)
     protected boolean administrateur;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     @JsonView(UtilisateurView.class)
     protected List<Commande> listeCommandes = new ArrayList<>();
 

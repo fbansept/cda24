@@ -4,11 +4,16 @@ package edu.fbansept.cda24.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.UtilisateurDao;
 import edu.fbansept.cda24.model.Utilisateur;
+import edu.fbansept.cda24.security.IsAdmin;
+import edu.fbansept.cda24.security.IsUser;
+import edu.fbansept.cda24.view.UtilisateurAvecCommandeView;
 import edu.fbansept.cda24.view.UtilisateurView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +21,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
+@IsUser
 public class UtilisateurController {
 
     @Autowired
@@ -28,7 +34,7 @@ public class UtilisateurController {
     }
 
     @GetMapping("/utilisateur/{id}")
-    @JsonView(UtilisateurView.class)
+    @JsonView(UtilisateurAvecCommandeView.class)
     public ResponseEntity<Utilisateur> get(@PathVariable int id) {
 
         Optional<Utilisateur> utilisateurOptional = utilisateurDao.findById(id);
@@ -43,6 +49,7 @@ public class UtilisateurController {
 
     @PostMapping("/utilisateur")
     @JsonView(UtilisateurView.class)
+    @IsAdmin
     public ResponseEntity<Utilisateur> add(@Valid @RequestBody Utilisateur nouveauUtilisateur) {
 
         //C'est une mise à jour
@@ -89,6 +96,7 @@ public class UtilisateurController {
 
     @DeleteMapping("/utilisateur/{id}")
     @JsonView(UtilisateurView.class)
+    @IsAdmin
     public ResponseEntity<Utilisateur> delete (@PathVariable int id) {
 
         Optional<Utilisateur> utilisateurOptional = utilisateurDao.findById(id);
