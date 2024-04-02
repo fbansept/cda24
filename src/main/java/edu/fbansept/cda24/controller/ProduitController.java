@@ -4,6 +4,7 @@ package edu.fbansept.cda24.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.ProduitDao;
 import edu.fbansept.cda24.model.Produit;
+import edu.fbansept.cda24.security.IsUser;
 import edu.fbansept.cda24.view.ProduitView;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class ProduitController {
     ProduitDao produitDao;
 
     @GetMapping("/produit/liste")
+    @IsUser
     @JsonView(ProduitView.class)
     public List<Produit> liste() {
 

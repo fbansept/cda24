@@ -18,7 +18,10 @@
       refresh();
 
       function refresh() {
-        fetch("http://localhost:8080/produit/liste")
+        fetch("http://localhost:8080/produit/liste" , 
+        {headers: {
+          "Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhQGEuY29tIn0.WLK31zXu66JK56jOUK91gZg4HZv3InjphZVqCf80XlU"
+        }})
           .then((reponse) => reponse.json())
           .then((listeProduit) => {
             const ulListeArticle = document.getElementById("liste-article");
