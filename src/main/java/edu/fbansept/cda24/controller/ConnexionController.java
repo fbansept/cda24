@@ -36,6 +36,12 @@ public class ConnexionController {
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * Action permettant de renvoyer un JWT à l'utilisateur
+     *
+     * @param utilisateur L'utilisateur qui tente de se connecter
+     * @return Le JWT
+     */
     @PostMapping("/connexion")
     public ResponseEntity<Map<String, Object>> connexion(@RequestBody Utilisateur utilisateur) {
 

@@ -44,13 +44,17 @@
           nom: document.getElementById("nom").value,
           code: document.getElementById("code").value,
           prix: document.getElementById("prix").value,
+          etat: {id: 1}
         };
 
         const jsonProduit = JSON.stringify(nouveauProduit);
 
         fetch("http://localhost:8080/produit", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhQGEuY29tIn0.WLK31zXu66JK56jOUK91gZg4HZv3InjphZVqCf80XlU"
+          },
           body: jsonProduit,
         })
           .then((resultat) => resultat.json())

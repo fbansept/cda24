@@ -24,7 +24,7 @@ public class EtatProduit {
     @JsonView({ProduitView.class, EtatProduitView.class})
     protected String designation;
 
-    @OneToMany(mappedBy = "etat")
-    @JsonView(EtatProduitView.class)
-    protected List<Produit> listeProduits = new ArrayList<>();
+//    @OneToMany(mappedBy = "etat")
+//    @JsonView(EtatProduitView.class)
+//    protected List<Produit> listeProduits = new ArrayList<>();
 }

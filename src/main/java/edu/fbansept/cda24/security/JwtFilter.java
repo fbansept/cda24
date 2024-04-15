@@ -23,6 +23,15 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     AppUserDetailsService appUserDetailsService;
 
+    /**
+     * Methose executée à chaque requete afin d'extraire le JWT de l'entête authorization et identifier l'utilisateur
+     *
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 

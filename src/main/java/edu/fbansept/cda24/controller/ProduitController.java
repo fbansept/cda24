@@ -4,6 +4,7 @@ package edu.fbansept.cda24.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import edu.fbansept.cda24.dao.ProduitDao;
 import edu.fbansept.cda24.model.Produit;
+import edu.fbansept.cda24.security.IsAdmin;
 import edu.fbansept.cda24.security.IsUser;
 import edu.fbansept.cda24.view.ProduitView;
 import jakarta.validation.Valid;
@@ -47,6 +48,7 @@ public class ProduitController {
 
     @PostMapping("/produit")
     @JsonView(ProduitView.class)
+    @IsAdmin
     public ResponseEntity<Produit> add(@Valid @RequestBody Produit nouveauProduit) {
 
         //C'est une mise à jour
