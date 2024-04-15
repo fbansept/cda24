@@ -1,6 +1,10 @@
 INSERT INTO etat (designation) VALUES ("Neuf"),("Bon état"), ("Mauvais état");
 
-INSERT INTO etiquette (designation) VALUES ("Best seller"),("En Promo"), ("Saint Valentin"), ("A la une");
+INSERT INTO etiquette (designation, couleur) VALUES
+("Best seller", "#FF0000"),
+("En Promo", "#0000FF"),
+("Saint Valentin","#FF8888"),
+("A la une", "#00FF00");
 
 INSERT INTO produit (prix, nom, code, description, etat_id) VALUES
 (20.99, 'Ecouteurs Bluetooth sans Fil, AOVOCE Casque Bluetooth 5.3 avec 4 ENC Réduction Bruit', 'AOVOCEA60B', 'la nouvelle génération de puce Bluetooth 5.3 personnalisée du écouteurs Bluetooth sans fil A60Pro est deux fois plus rapide que la génération précédente (Bluetooth 5.2) et a une distance de transmission quatre fois plus longue. Audio de haute qualité plus rapide et plus stable (portée de transmission jusqu\'à 15 m). Grâce à la fonction mémoire, le casque se connecte automatiquement à votre téléphone (après la première connexion).',1),

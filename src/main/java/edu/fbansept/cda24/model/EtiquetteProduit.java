@@ -19,4 +19,7 @@ public class EtiquetteProduit {
 
     @JsonView(ProduitView.class)
     protected String designation;
+
+    @JsonView(ProduitView.class)
+    protected String couleur;
 }
