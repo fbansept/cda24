@@ -53,5 +53,5 @@ public class Produit  {
             inverseJoinColumns = @JoinColumn(name = "etiquette_id")
     )
     @JsonView(ProduitView.class)
-    protected List<EtiquetteProduit> listeEtiquettes = new ArrayList<>();
+    protected List<EtiquetteProduit> listeEtiquettes;
 }

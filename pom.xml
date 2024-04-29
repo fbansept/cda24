@@ -72,10 +72,43 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>developpement</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<adresse_bdd>localhost</adresse_bdd>
+				<port_bdd>3306</port_bdd>
+				<nom_bdd>spring_td</nom_bdd>
+				<utilisateur_bdd>root</utilisateur_bdd>
+				<mot_de_passe_bdd>root</mot_de_passe_bdd>
+				<secret_jwt>azerty</secret_jwt>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>production</id>
+			<properties>
+				<adresse_bdd>localhost</adresse_bdd>
+				<port_bdd>3306</port_bdd>
+				<nom_bdd>spring_td_test_production</nom_bdd>
+				<utilisateur_bdd>root</utilisateur_bdd>
+				<mot_de_passe_bdd>root</mot_de_passe_bdd>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
