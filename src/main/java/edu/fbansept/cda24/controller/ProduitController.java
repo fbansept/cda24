@@ -146,9 +146,9 @@ public class ProduitController {
     @IsUser
     @GetMapping("/download/{nomDeFichier}")
     public ResponseEntity<byte[]> getImageAsResource(@PathVariable String nomDeFichier) {
-        try {
-            String mimeType = "";
-            if(!fichierService.nomFichierValide(nomDeFichier)) {
+            try {
+                String mimeType = "";
+                if(!fichierService.nomFichierValide(nomDeFichier)) {
                 return ResponseEntity.notFound().build();
             }
             try {
