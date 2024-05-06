@@ -87,6 +87,7 @@
 				<utilisateur_bdd>root</utilisateur_bdd>
 				<mot_de_passe_bdd>root</mot_de_passe_bdd>
 				<secret_jwt>azerty</secret_jwt>
+				<dossier_upload>Nom de dossier upload a modifier</dossier_upload>
 			</properties>
 		</profile>
 

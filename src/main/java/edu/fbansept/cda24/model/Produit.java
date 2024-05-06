@@ -54,4 +54,7 @@ public class Produit  {
     )
     @JsonView(ProduitView.class)
     protected List<EtiquetteProduit> listeEtiquettes;
+
+    @JsonView({ProduitView.class, CommandeView.class})
+    protected String nomImage;
 }
