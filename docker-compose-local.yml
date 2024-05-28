@@ -9,6 +9,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: pma
@@ -20,15 +22,5 @@ services:
     restart: always
     ports:
       - 8181:80
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    volumes:
-      - /home/java15/uploads:/uploads
-    depends_on:
-      - db
-
 volumes:
   dbdata:
-  
