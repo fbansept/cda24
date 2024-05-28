@@ -1,5 +1,10 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 
+RUN mkdir -p /root/.m2 \
+    && mkdir /root/.m2/repository
+# Copy maven settings, containing repository configurations
+COPY ../.m2/settings.xml /root/.m2
+
 RUN mkdir /project
 
 COPY . /project
