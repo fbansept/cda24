@@ -81,7 +81,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<adresse_bdd>db</adresse_bdd>
+				<adresse_bdd>localhost</adresse_bdd>
 				<port_bdd>3306</port_bdd>
 				<nom_bdd>spring_td</nom_bdd>
 				<utilisateur_bdd>root</utilisateur_bdd>
@@ -94,9 +94,9 @@
 		<profile>
 			<id>production</id>
 			<properties>
-				<adresse_bdd>localhost</adresse_bdd>
+				<adresse_bdd>db</adresse_bdd>
 				<port_bdd>3306</port_bdd>
-				<nom_bdd>spring_td_test_production</nom_bdd>
+				<nom_bdd>spring_production</nom_bdd>
 				<utilisateur_bdd>root</utilisateur_bdd>
 				<mot_de_passe_bdd>root</mot_de_passe_bdd>
 			</properties>
