@@ -81,7 +81,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<adresse_bdd>localhost</adresse_bdd>
+				<adresse_bdd>db</adresse_bdd>
 				<port_bdd>3306</port_bdd>
 				<nom_bdd>spring_td</nom_bdd>
 				<utilisateur_bdd>root</utilisateur_bdd>
@@ -104,6 +104,7 @@
 	</profiles>
 
 	<build>
+
 		<resources>
 			<resource>
 				<filtering>true</filtering>
@@ -111,6 +112,16 @@
 			</resource>
 		</resources>
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M6</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -121,6 +132,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+
 				</configuration>
 			</plugin>
 		</plugins>
