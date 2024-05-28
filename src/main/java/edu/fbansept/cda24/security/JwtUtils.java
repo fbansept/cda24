@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 public class JwtUtils {
 
-    @Value("secret.jwt")
+    @Value("${secret.jwt}")
     public String secretJwt;
 
     public String generateToken(UserDetails userDetails) {
