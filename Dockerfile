@@ -3,7 +3,8 @@ FROM maven:3.9.6-eclipse-temurin-17 AS build
 RUN mkdir -p /root/.m2 \
     && mkdir /root/.m2/repository
 # Copy maven settings, containing repository configurations
-COPY ../.m2/settings.xml /root/.m2
+COPY settings.xml /root/.m2
+COPY settings.xml /usr/share/maven/ref/
 
 RUN mkdir /project
 
@@ -11,7 +12,7 @@ COPY . /project
 
 WORKDIR /project
 
-RUN mvn clean package -P production,docker
+RUN mvn clean package -P production,docker -s settings.xml
 
 FROM eclipse-temurin:17-jdk-alpine
 
