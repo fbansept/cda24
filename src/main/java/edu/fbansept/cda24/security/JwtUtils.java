@@ -17,6 +17,8 @@ public class JwtUtils {
 
     public String generateToken(UserDetails userDetails) {
 
+        System.out.println(secretJwt);
+
         SimpleGrantedAuthority role = (SimpleGrantedAuthority)userDetails.getAuthorities().toArray()[0];
 
         return Jwts.builder()
