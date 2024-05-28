@@ -33,7 +33,11 @@ services:
     build: .
     ports:
       - "8080:8080"
+    volumes:
+      - /home/java15/uploads:/uploads
     depends_on:
       - db
+
 volumes:
   dbdata:
+  
