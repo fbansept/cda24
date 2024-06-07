@@ -4,7 +4,7 @@ services:
 
   db:
     image: mysql:latest
-    nv_file:
+    env_file:
       - .env
       - .env.local
     environment:
@@ -26,7 +26,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ${UPLOADS_PATH}:/uploads
+      - ${UPLOAD_FOLDER}:/uploads
     depends_on:
       - db
   cdn:
