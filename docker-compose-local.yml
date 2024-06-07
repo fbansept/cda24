@@ -5,7 +5,7 @@ services:
     image: mysql:latest
     env_file:
       - .env
-      - .env.local
+      - .local.env
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
@@ -20,7 +20,7 @@ services:
       - db
     env_file:
       - .env
-      - .env.local
+      - .local.env
     environment:
       PMA_HOST: ${DB_HOST}
       PMA_PORT: ${DB_PORT}
@@ -32,7 +32,7 @@ services:
     image: nginx:alpine
     env_file:
       - .env
-      - .env.local
+      - .local.env
     ports:
       - "80:80"
     volumes:

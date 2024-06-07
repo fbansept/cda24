@@ -6,16 +6,17 @@ services:
     image: mysql:latest
     env_file:
       - .env
-      - .env.local
+      - .local.env
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - dbdata:/var/lib/mysql
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     env_file:
       - .env
-      - .env.local
+      - .local.env
     links:
       - db
     environment:
@@ -24,22 +25,24 @@ services:
     restart: always
     ports:
       - 8181:80
+
   app:
     build: .
     env_file:
       - .env
-      - .env.local
+      - .local.env
     ports:
       - "8080:8080"
     volumes:
       - ${UPLOAD_FOLDER}:/uploads
     depends_on:
       - db
+
   cdn:
     build: nginx:alpine
     env_file:
       - .env
-      - .env.local
+      - .local.env
     ports:
       - "81:80"
     volumes:
