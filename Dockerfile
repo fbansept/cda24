@@ -12,7 +12,7 @@ COPY . /project
 
 WORKDIR /project
 
-RUN mvn clean package -P production,docker -s settings.xml
+RUN mvn clean package
 
 FROM eclipse-temurin:17-jdk-alpine
 

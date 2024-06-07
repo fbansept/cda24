@@ -1,26 +1,42 @@
 version: '3'
 
 services:
-
   db:
     image: mysql:latest
-    container_name: db
+    env_file:
+      - .env
+      - .env.local
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - dbdata:/var/lib/mysql
     ports:
-      - 3306:3306
+      - ${DB_PORT}:3306
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: pma
     links:
       - db
+    env_file:
+      - .env
+      - .env.local
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
+      PMA_HOST: ${DB_HOST}
+      PMA_PORT: ${DB_PORT}
     restart: always
     ports:
       - 8181:80
+
+  cdn:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ${UPLOADS_PATH}:/usr/share/nginx/html/
+      - ./cdn-nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - db
+
 volumes:
   dbdata:
